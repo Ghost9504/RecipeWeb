@@ -14,8 +14,11 @@ exports.homepage = async(req, res) => {
     const thai = await Recipe.find({ 'category': 'Thai' }).limit(limitNumber);
     const american = await Recipe.find({ 'category': 'American' }).limit(limitNumber);
     const chinese = await Recipe.find({ 'category': 'Chinese' }).limit(limitNumber);
+    const goan = await Recipe.find({ 'category': 'Goan' }).limit(limitNumber);
+    const breakfast = await Recipe.find({ 'category': 'Breakfast' }).limit(limitNumber);
+    const dessert = await Recipe.find({ 'category': 'Dessert' }).limit(limitNumber);
 
-    const food = { latest, thai, american, chinese };
+    const food = { latest, thai, american, chinese, goan, breakfast, dessert };
 
     res.render('index', { title: 'Cooking Blog - Home', categories, food } );
   } catch (error) {
@@ -168,15 +171,16 @@ exports.submitRecipePost = async(req, res) => {
         email: req.body.email,
         ingredients: req.body.ingredients,
         category: req.body.category,
-        image: newImageName
+        image: newImageName,
+        chefname: req.body.chefname
       });
       
       await newRecipe.save();
   
       req.flash('infoSubmit', 'Recipe has been added.')
-      res.redirect('/submitRecipe');
+      res.redirect('/exploreLatest');
     } catch (error) {
-      // res.json(error);
+      res.json(error);
       req.flash('infoErrors', error);
       res.redirect('/submitRecipe');
     }
@@ -275,32 +279,16 @@ exports.submitRecipePost = async(req, res) => {
 // try{
 //     await Category.insertMany(
 
-//         // [
-//         //           {
-//         //             "name": "Thai",
-//         //             "image": "thai-food.jpg"
-//         //           },
-//         //           {
-//         //             "name": "American",
-//         //             "image": "american-food.jpg"
-//         //           }, 
-//         //           {
-//         //             "name": "Chinese",
-//         //             "image": "chinese-food.jpg"
-//         //           },
-//         //           {
-//         //             "name": "Mexican",
-//         //             "image": "mexican-food.jpg"
-//         //           }, 
-//         //           {
-//         //             "name": "Indian",
-//         //             "image": "indian-food.jpg"
-//         //           },
-//         //           {
-//         //             "name": "Spanish",
-//         //             "image": "spanish-food.jpg"
-//         //           }
-//         //         ]
+//         [
+//  {
+//                     "name": "Dessert",
+//                     "image": "desert.png"
+//                   },{
+// "name":"Breakfast",
+// "image":"breakfast.jpg"
+
+// }
+//                 ]
 
 //     );
 // }catch (error){
@@ -310,3 +298,30 @@ exports.submitRecipePost = async(req, res) => {
 // }
 
 // insertdummyCategoryData();
+
+
+
+
+
+// // Delete Recipe
+// async function deleteRecipe(){
+//   try {
+//     await Recipe.deleteOne({ name: 'New Recipe From Form' });
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }
+// deleteRecipe();
+
+
+// Update Recipe
+// async function updateRecipe(){
+//   try {
+//     const res = await Recipe.updateOne({ name: 'New Recipe' }, { name: 'New Recipe Updated' });
+//     res.n; // Number of documents matched
+//     res.nModified; // Number of documents modified
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }
+// updateRecipe();

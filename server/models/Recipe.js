@@ -26,10 +26,14 @@ const recipeSchema = new mongoose.Schema({
     type: String,
     required: 'This field is required.'
   },
+  chefname: {
+    type: String,
+    required: 'This field is required.'
+  }
 });
 
-recipeSchema.index({ name: 'text', description: 'text' ,ingredients:'text'});
+recipeSchema.index({ name: 'text', description: 'text' , chef:'text'});
 // WildCard Indexing
 //recipeSchema.index({ "$**" : 'text' });
-
+// recipeSchema.index({ email:'text'});
 module.exports = mongoose.model('Recipe', recipeSchema);

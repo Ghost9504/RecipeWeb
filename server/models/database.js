@@ -9,7 +9,8 @@ mongoose.connect(
     {
         maxPoolSize:50,
         wtimeoutMS:2500,
-        useNewUrlParser:true
+        useNewUrlParser:true,
+  
     }
 )
 .catch(err => {

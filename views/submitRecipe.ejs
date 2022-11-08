@@ -14,9 +14,12 @@
       <form action="/submitRecipe" enctype="multipart/form-data" method="POST">
       
         <div class="row g-3">
-  
           <div class="col-12">
-            <label for="email" class="form-label">Email</label>
+            <label for="chefname" class="form-label">Chef Name</label>
+            <input type="text" name="chefname" id="chefname" class="form-control">
+          </div>
+          <div class="col-12">
+            <label for="email" class="form-label">Chef email</label>
             <input type="email" name="email" id="email" class="form-control">
           </div>
   
@@ -32,7 +35,7 @@
   
           <div class="col-12">
             <label for="name" class="form-label">Ingredients</label><br>
-            <small>Example: Ice</small>
+            <small>Example: 1tbps happiness</small>
             <div class="ingredientList">
               <div class="ingredeintDiv mb-1">
                 <input type="text" name="ingredients" class="form-control">
@@ -48,11 +51,13 @@
             <label for="category">Select Category</label>
             <select class="form-select form-control" name="category" aria-label="Category">
               <option selected>Select Category</option>
-              <option value="Thai">Thai</option>
+              <option value="Thai">Goan</option>
               <option value="American">American</option>
               <option value="Chinese">Chinese</option>
               <option value="Mexican">Mexican</option>
               <option value="Indian">Indian</option>
+              <option value="Breakfast">Breakfast</option>
+              <option value="Dessert">Indian</option>
             </select>
           </div>
   
